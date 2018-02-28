@@ -13,7 +13,6 @@ public class NotaTeste extends TestCase{
 	@Test
 	public void testAddNota() throws Exception {
 		Nota nota = new Nota();
-		nota.setId(1);
 		nota.setTitulo("Teste 1 - Titulo");
 		nota.setDescricao("Teste 1 - Descrição");
 		
@@ -25,51 +24,45 @@ public class NotaTeste extends TestCase{
 	@Test
 	public void testBuscarNotaPorId() throws Exception {
 		Nota nota = new Nota();
-		nota.setId(2);
 		nota.setTitulo("Teste 2 - Titulo");
 		nota.setDescricao("Teste 2 - Descrição");
 		
 		notaDAO.addNota(nota);
-		notaDAO.buscarNotaPorId(nota.getId());
 		
-		assertEquals(2, nota.getId());;
+		assertEquals(2, notaDAO.buscarNotaPorTitulo(nota).getId());
 	}
 	
 	@Test
 	public void testTituloNota() throws Exception {
 		Nota nota = new Nota();
-		nota.setId(2);
-		nota.setTitulo("Teste 2 - Titulo");
-		nota.setDescricao("Teste 2 - Descrição");
+		nota.setTitulo("Teste 3 - Titulo");
+		nota.setDescricao("Teste 3 - Descrição");
 		
 		notaDAO.addNota(nota);
 		notaDAO.buscarNotaPorId(nota.getId());
 		
-		assertEquals("Teste 2 - Titulo", nota.getTitulo());;
+		assertEquals("Teste 3 - Titulo", notaDAO.buscarNotaPorTitulo(nota).getTitulo());
 	}
 	
 	@Test
 	public void testDescricaoNota() throws Exception {
 		Nota nota = new Nota();
-		nota.setId(2);
-		nota.setTitulo("Teste 2 - Titulo");
-		nota.setDescricao("Teste 2 - Descrição");
+		nota.setTitulo("Teste 4 - Titulo");
+		nota.setDescricao("Teste 4 - Descrição");
 		
 		notaDAO.addNota(nota);
-		notaDAO.buscarNotaPorId(nota.getId());
 		
-		assertEquals("Teste 2 - Descrição", nota.getDescricao());;
+		assertEquals("Teste 4 - Descrição", notaDAO.buscarNotaPorDescricao(nota).getDescricao());
 	}
 	
 	@Test
 	public void testRemoverNota() throws Exception {
 		Nota nota = new Nota();
-		nota.setId(3);
-		nota.setTitulo("Teste 3 - Titulo");
-		nota.setDescricao("Teste 3 - Descrição");
+		nota.setTitulo("Teste 5 - Titulo");
+		nota.setDescricao("Teste 5 - Descrição");
 		
 		notaDAO.addNota(nota);
-		notaDAO.removerNota(nota.getId());
+		notaDAO.removerNota(notaDAO.buscarNotaPorId(nota.getId()).getId());
 		
 		assertNull(nota.getId());
 	}

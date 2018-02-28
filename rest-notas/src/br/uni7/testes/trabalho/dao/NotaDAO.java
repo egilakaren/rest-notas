@@ -53,6 +53,44 @@ public class NotaDAO {
 		return nota;
 	}
 	
+	public Nota buscarNotaPorTitulo(Nota nota) throws Exception {
+		Connection conexao = BDConfig.getConnection();
+		
+		String sql = "SELECT * FROM tbl_nota WHERE titulo = ?";
+		
+		PreparedStatement statement = conexao.prepareStatement(sql);
+		statement.setString(1, nota.getTitulo());
+		ResultSet rs = statement.executeQuery();
+		
+		if (rs.next()) {
+			nota = new Nota();
+			nota.setId(rs.getInt("id"));
+			nota.setTitulo(rs.getString("titulo"));
+			nota.setDescricao(rs.getString("descricao"));
+		}
+		
+		return nota;
+	}
+	
+	public Nota buscarNotaPorDescricao(Nota nota) throws Exception {
+		Connection conexao = BDConfig.getConnection();
+		
+		String sql = "SELECT * FROM tbl_nota WHERE titulo = ?";
+		
+		PreparedStatement statement = conexao.prepareStatement(sql);
+		statement.setString(1, nota.getDescricao());
+		ResultSet rs = statement.executeQuery();
+		
+		if (rs.next()) {
+			nota = new Nota();
+			nota.setId(rs.getInt("id"));
+			nota.setTitulo(rs.getString("titulo"));
+			nota.setDescricao(rs.getString("descricao"));
+		}
+		
+		return nota;
+	}
+	
 	public void addNota(Nota nota) throws Exception {
 		Connection conexao = BDConfig.getConnection();
 
