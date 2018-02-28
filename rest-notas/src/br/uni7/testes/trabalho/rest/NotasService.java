@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -75,4 +76,25 @@ public class NotasService {
 
 		return nota;
 	}
+	
+	@PUT
+	@Path("/edit/{id}")
+	@Consumes(MediaType.APPLICATION_JSON + CHARSET_UTF8)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String editarNota(Nota nota, @PathParam("id") int idNota) {
+		String msg = "";
+		
+		System.out.println(nota.getTitulo());
+		
+		try {
+			notaDAO.editarNota(nota, idNota);
+			
+			msg = "Nota editada com sucesso!";
+		} catch (Exception e) {
+			msg = "Erro ao editar a nota!";
+			e.printStackTrace();
+		}
+		
+		return msg;
+	}	
 }
