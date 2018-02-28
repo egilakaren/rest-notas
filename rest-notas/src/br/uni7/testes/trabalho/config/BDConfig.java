@@ -9,6 +9,6 @@ public class BDConfig {
 
 	public static Connection getConnection() throws SQLException, ClassNotFoundException {
 		Class.forName("org.postgresql.Driver");
-		return DriverManager.getConnection("jdbc:postgresql://localhost:5432/cursotst", "postgres", "postgres");
+		return DriverManager.getConnection("jdbc:postgresql://localhost:5433/cursotst", "postgres", "postgres");
 	}
 }

@@ -1,8 +1,8 @@
 package br.uni7.testes.trabalho.config;
 
-import org.glassfish.jersey.server.ResourceConfig;
-
 import javax.ws.rs.ApplicationPath;
+
+import org.glassfish.jersey.server.ResourceConfig;
 
 @ApplicationPath("api")
 public class Application extends ResourceConfig {
