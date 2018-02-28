@@ -8,6 +8,6 @@ import javax.ws.rs.ApplicationPath;
 public class Application extends ResourceConfig {
 
     public Application() {
-        packages("br.uni7.testes.trabalho.rest");
+        packages("br.uni7.testes.trabalho.rest", "br.uni7.testes.trabalho.filter");
     }
 }
