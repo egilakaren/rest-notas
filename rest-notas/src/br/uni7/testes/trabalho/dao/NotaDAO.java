@@ -15,16 +15,16 @@ public class NotaDAO {
 
 		Connection conexao = BDConfig.getConnection();
 
-		String sql = "SELECT * FROM TB_NOTA";
+		String sql = "SELECT * FROM tbl_nota";
 
 		PreparedStatement statement = conexao.prepareStatement(sql);
 		ResultSet rs = statement.executeQuery();
 
 		while (rs.next()) {
 			Nota nota = new Nota();
-			nota.setId(rs.getInt("ID_NOTE"));
-			nota.setTitulo(rs.getString("TITULO"));
-			nota.setDescricao(rs.getString("DESCRICAO"));
+			nota.setId(rs.getInt("id"));
+			nota.setTitulo(rs.getString("titulo"));
+			nota.setDescricao(rs.getString("descricao"));
 
 			lista.add(nota);
 		}
@@ -37,7 +37,7 @@ public class NotaDAO {
 
 		Connection conexao = BDConfig.getConnection();
 
-		String sql = "SELECT * FROM TB_NOTA WHERE ID_NOTE = ?";
+		String sql = "SELECT * FROM tbl_nota WHERE id = ?";
 
 		PreparedStatement statement = conexao.prepareStatement(sql);
 		statement.setInt(1, idNota);
@@ -45,9 +45,9 @@ public class NotaDAO {
 
 		if (rs.next()) {
 			nota = new Nota();
-			nota.setId(rs.getInt("ID_NOTE"));
-			nota.setTitulo(rs.getString("TITULO"));
-			nota.setDescricao(rs.getString("DESCRICAO"));
+			nota.setId(rs.getInt("id"));
+			nota.setTitulo(rs.getString("titulo"));
+			nota.setDescricao(rs.getString("descricao"));
 		}
 
 		return nota;
@@ -57,7 +57,7 @@ public class NotaDAO {
 		int idGerado = 0;
 		Connection conexao = BDConfig.getConnection();
 
-		String sql = "INSERT INTO TB_NOTA(TITULO, DESCRICAO) VALUES(?, ?)";
+		String sql = "INSERT INTO tbl_nota(titulo, descricao) VALUES(?, ?)";
 
 		PreparedStatement statement = conexao.prepareStatement(sql);
 		statement.setString(1, nota.getTitulo());
@@ -68,7 +68,7 @@ public class NotaDAO {
 	public void editarNota(Nota nota, int idNota) throws Exception {
 		Connection conexao = BDConfig.getConnection();
 
-		String sql = "UPDATE TB_NOTA SET TITULO = ?, DESCRICAO = ? WHERE ID_NOTE = ?";
+		String sql = "UPDATE tbl_nota SET titulo = ?, descricao = ? WHERE id = ?";
 
 		PreparedStatement statement = conexao.prepareStatement(sql);
 		statement.setString(1, nota.getTitulo());
@@ -80,7 +80,7 @@ public class NotaDAO {
 	public void removerNota(int idNota) throws Exception {
 		Connection conexao = BDConfig.getConnection();
 
-		String sql = "DELETE FROM TB_NOTA WHERE ID_NOTE = ?";
+		String sql = "DELETE FROM tbl_nota WHERE id = ?";
 
 		PreparedStatement statement = conexao.prepareStatement(sql);
 		statement.setInt(1, idNota);

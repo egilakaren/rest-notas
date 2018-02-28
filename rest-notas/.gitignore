@@ -1,2 +1,5 @@
 /build/
 /target/
+Dockerfile
+.idea/
+rest-notas.iml
